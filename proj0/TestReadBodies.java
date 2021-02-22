@@ -42,22 +42,27 @@ public class TestReadBodies {
                     System.out.println("Advice: Your Earth doesn't have the right xxPos!");
                     randomChecksOkay = false;
                 }
+                System.out.println("Earth pass");
             } else if ("mars.gif".equals(p.imgFileName)) {
                 foundMars = true;
+                System.out.println("mars pass");
             } else if ("mercury.gif".equals(p.imgFileName)) {
                 foundMercury = true;
                 if (!doubleEquals(p.yyPos, 0, 0.01)) {
                     System.out.println("Advice: Your Mercury doesn't have the right yyPos!");
                     randomChecksOkay = false;
                 }
+                System.out.println("Mercury pass");
             } else if ("sun.gif".equals(p.imgFileName)) {
                 foundSun = true;
+                System.out.println("Sun pass");
             } else if ("venus.gif".equals(p.imgFileName)) {
                 foundVenus = true;
                 if (!doubleEquals(p.mass, 4.8690e+24, 0.01)) {
                     System.out.println("Advice: Your Venus doesn't have the right mass!");
                     randomChecksOkay = false;
                 }
+                System.out.println("Venus pass");
             }
         }
 
