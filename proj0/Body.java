@@ -78,4 +78,9 @@ public class Body {
         yyPos += dt*yyVel;
     }
 
+    public void draw(){
+        StdDraw.picture(xxPos/1e9, yyPos/1e9, "./images/"+imgFileName);
+        StdDraw.show();
+    }
+
 }
