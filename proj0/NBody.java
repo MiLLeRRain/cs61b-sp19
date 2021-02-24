@@ -73,8 +73,6 @@ public class NBody {
         StdDraw.setScale(-r/1e9, r/1e9);
         StdDraw.clear();
         StdDraw.picture(0, 0, "./images/starfield.jpg");
-//        StdDraw.show();
-//        StdDraw.pause(2000);
     }
 
     private static void drawBodys(Body[] planets) {
