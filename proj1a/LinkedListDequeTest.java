@@ -80,6 +80,14 @@ public class LinkedListDequeTest {
 		// should be empty 
 		passed = checkEmpty(true, lld1.isEmpty()) && passed;
 
+		lld1.addLast(10);
+		// should not be empty
+		passed = checkEmpty(false, lld1.isEmpty()) && passed;
+
+		lld1.removeLast();
+		// should be empty
+		passed = checkEmpty(true, lld1.isEmpty()) && passed;
+
 		printTestStatus(passed);
 
 	}

@@ -18,7 +18,7 @@ public class LinkedListDeque<T> {
 
 //    private int index; put in Node class?
 //    Invariants:
-//    1. 每个Node都含有item 两端均有指针 都含有index
+//    1. 每个Node都含有item 两端均有指针
 //    2. 初始field size为0 每增加一个+1 每减少一个-1
 //    3. 1stNode是sentinel的next lastNode是sentinel的prev
 
@@ -27,7 +27,7 @@ public class LinkedListDeque<T> {
      * Creates an empty linked list deque.
      */
     public LinkedListDeque() {
-        sentinel = new TNode(null, sentinel.next, sentinel.prev);
+        sentinel = new TNode(null, null, null);
         size = 0;
     }
 
@@ -44,9 +44,9 @@ public class LinkedListDeque<T> {
      * @param index
      * @return
      */
-    public T getRecursive(int index){
-
-    }
+//    public T getRecursive(int index){
+//
+//    }
 
     /**
      * Adds an item of type T to the front of the deque.
@@ -98,12 +98,12 @@ public class LinkedListDeque<T> {
      */
     public T removeFirst(){
         TNode toReturn = sentinel.next;
-        if (sentinel.next!=null){
-
+        if (toReturn.item!=null){
             sentinel.next = sentinel.next.next;
+            size--;
+            return toReturn.item;
         }
-        size--;
-        return toReturn.item;
+        return null;
     }
 
     /**
@@ -112,7 +112,13 @@ public class LinkedListDeque<T> {
      * @return
      */
     public T removeLast(){
-
+        TNode toReturn = sentinel.prev;
+        if (toReturn.item!=null){
+            sentinel.prev = sentinel.prev.prev;
+            size--;
+            return toReturn.item;
+        }
+        return null;
     }
 
     /**
@@ -121,7 +127,7 @@ public class LinkedListDeque<T> {
      * @param index
      * @return
      */
-    public T get(int index){
-
-    }
+//    public T get(int index){
+//
+//    }
 }
