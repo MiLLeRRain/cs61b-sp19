@@ -1,20 +1,34 @@
 public class LinkedListDeque<T> {
     private int size;
     private TNode sentinel;
-//    private int index; put in Node class?
 
     private class TNode {
         public T item;
         public TNode prev;
         public TNode next;
-        public int index;
+//        public int index;
+
+        public TNode(T i, TNode p, TNode n){
+            item = i;
+            prev = p;
+            next = n;
+//            index = idx;
+        }
     }
+
+//    private int index; put in Node class?
+//    Invariants:
+//    1. 每个Node都含有item 两端均有指针 都含有index
+//    2. 初始field size为0 每增加一个+1 每减少一个-1
+//    3. 1stNode是sentinel的next lastNode是sentinel的prev
+
 
     /**
      * Creates an empty linked list deque.
      */
-    public LinkedListDeque(){
-
+    public LinkedListDeque() {
+        sentinel = new TNode(null, sentinel.next, sentinel.prev);
+        size = 0;
     }
 
     /**
@@ -39,7 +53,8 @@ public class LinkedListDeque<T> {
      * @param item
      */
     public void addFirst(T item){
-
+        sentinel.next = new TNode(item, sentinel, sentinel.next);
+        size++;
     }
 
     /**
@@ -47,7 +62,8 @@ public class LinkedListDeque<T> {
      * @param item
      */
     public void addLast(T item){
-
+        sentinel.prev = new TNode(item, sentinel.prev, sentinel);
+        size++;
     }
 
     /**
@@ -55,6 +71,7 @@ public class LinkedListDeque<T> {
      * @return
      */
     public boolean isEmpty(){
+        if (size == 0) return true;
         return false;
     }
 
@@ -80,7 +97,13 @@ public class LinkedListDeque<T> {
      * @return
      */
     public T removeFirst(){
+        TNode toReturn = sentinel.next;
+        if (sentinel.next!=null){
 
+            sentinel.next = sentinel.next.next;
+        }
+        size--;
+        return toReturn.item;
     }
 
     /**
