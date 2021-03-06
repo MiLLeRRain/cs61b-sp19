@@ -6,17 +6,14 @@ public class LinkedListDeque<T> {
         public T item;
         public TNode prev;
         public TNode next;
-//        public int index;
 
         public TNode(T i, TNode p, TNode n){
             item = i;
             prev = p;
             next = n;
-//            index = idx;
         }
     }
 
-//    private int index; put in Node class?
 //    Invariants:
 //    1. 每个Node都含有item 两端均有指针
 //    2. 初始field size为0 每增加一个+1 每减少一个-1
@@ -27,7 +24,7 @@ public class LinkedListDeque<T> {
      * Creates an empty linked list deque.
      */
     public LinkedListDeque() {
-        sentinel = new TNode(null, null, null);
+        sentinel = new TNode(null, sentinel, sentinel);
         size = 0;
     }
 
@@ -36,7 +33,11 @@ public class LinkedListDeque<T> {
      * @param other
      */
     public LinkedListDeque(LinkedListDeque other){
+        sentinel = new TNode(null, sentinel, sentinel);
 
+        for (int i = 0; i < other.size; i++){
+            addLast((T) other.get(i));
+        }
     }
 
     /**
@@ -44,16 +45,37 @@ public class LinkedListDeque<T> {
      * @param index
      * @return
      */
-//    public T getRecursive(int index){
-//
-//    }
+    public T getRecursive(int index){
+        if (index < 0 || index > size-1) return null;
+        return getRecursive(index, sentinel.next);
+    }
+
+    public T getRecursive(int toTarget, TNode t){
+        if (toTarget > 0) {
+            toTarget--;
+            return getRecursive(toTarget, t.next);
+        }
+        return t.item;
+    }
 
     /**
      * Adds an item of type T to the front of the deque.
      * @param item
      */
     public void addFirst(T item){
-        sentinel.next = new TNode(item, sentinel, sentinel.next);
+        TNode first;
+
+        if (isEmpty()) {
+            first = new TNode(item, sentinel, sentinel);
+            sentinel.prev = first;
+        }
+
+        else {
+            first = new TNode(item, sentinel, sentinel.next);
+            sentinel.next.prev = first;
+        }
+        sentinel.next = first;
+
         size++;
     }
 
@@ -62,7 +84,20 @@ public class LinkedListDeque<T> {
      * @param item
      */
     public void addLast(T item){
-        sentinel.prev = new TNode(item, sentinel.prev, sentinel);
+        TNode last;
+
+        if (isEmpty()) {
+            last = new TNode(item, sentinel, sentinel);
+            sentinel.prev = last;
+            sentinel.next = last;
+        }
+
+        else {
+            last = new TNode(item, sentinel.prev, sentinel);
+            sentinel.prev.next = last;
+            sentinel.prev = last;
+        }
+
         size++;
     }
 
@@ -88,7 +123,16 @@ public class LinkedListDeque<T> {
      * Once all the items have been printed, print out a new line.
      */
     public void printDeque(){
-
+        if (size == 0){
+            System.out.println("Size is 0. Nothing to print.");
+        }
+        TNode toPrint = sentinel.next;
+        while (toPrint.item!=null){
+            System.out.print(toPrint.item.toString()+" ");
+            toPrint = toPrint.next;
+        }
+        System.out.println("- End of List.");
+        System.out.println("--------------");
     }
 
     /**
@@ -97,11 +141,12 @@ public class LinkedListDeque<T> {
      * @return
      */
     public T removeFirst(){
-        TNode toReturn = sentinel.next;
-        if (toReturn.item!=null){
+        T toReturn = sentinel.next.item;
+        if (toReturn!=null){
+            sentinel.next.next.prev = sentinel;
             sentinel.next = sentinel.next.next;
             size--;
-            return toReturn.item;
+            return toReturn;
         }
         return null;
     }
@@ -112,11 +157,12 @@ public class LinkedListDeque<T> {
      * @return
      */
     public T removeLast(){
-        TNode toReturn = sentinel.prev;
-        if (toReturn.item!=null){
+        T toReturn = sentinel.prev.item;
+        if (toReturn!=null){
+            sentinel.prev.prev.next = sentinel;
             sentinel.prev = sentinel.prev.prev;
             size--;
-            return toReturn.item;
+            return toReturn;
         }
         return null;
     }
@@ -127,7 +173,20 @@ public class LinkedListDeque<T> {
      * @param index
      * @return
      */
-//    public T get(int index){
-//
-//    }
+    public T get(int index){
+        if (size == 0){
+            System.out.println("Size is 0. Noting to return.");
+            return null;
+        }
+        if (index < 0 || index > size-1) return null;
+
+        TNode toReturn = sentinel.next;
+        for (int i = 0; i < size; i++){
+            if (i == index){
+                break;
+            }
+            toReturn = toReturn.next;
+        }
+        return toReturn.item;
+    }
 }

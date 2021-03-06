@@ -1,3 +1,6 @@
+import org.junit.Assert;
+import org.junit.Assert.*;
+
 /** Performs some basic linked list tests. */
 public class LinkedListDequeTest {
 	
@@ -35,7 +38,7 @@ public class LinkedListDequeTest {
 	  * && is the "and" operation. */
 	public static void addIsEmptySizeTest() {
 		System.out.println("Running add/isEmpty/Size test.");
-		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
+//		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
 		LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
 
@@ -66,7 +69,7 @@ public class LinkedListDequeTest {
 
 		System.out.println("Running add/remove test.");
 
-		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
+//		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
 		LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
 		// should be empty 
@@ -92,9 +95,60 @@ public class LinkedListDequeTest {
 
 	}
 
+	public static void getTest() {
+		System.out.println("Get by index test. (by iteration)");
+		LinkedListDeque<Double> lld2 = new LinkedListDeque<>();
+
+		lld2.addFirst(2.0);
+		lld2.addFirst(1.0);
+		lld2.addLast(3.0);
+		lld2.addLast(4.0);
+
+		Double[] expected = new Double[]{1.0, 2.0, 3.0, 4.0};
+
+		Double[] actual = new Double[4];
+		for (int i = 0; i < 4; i++) {
+			actual[i] = lld2.get(i);
+		}
+
+		Assert.assertArrayEquals(expected, actual);
+
+	}
+
+	private static void getRecursiveTest() {
+		System.out.println("Get by index test. (by recursive)");
+		LinkedListDeque<Double> lld2 = new LinkedListDeque<>();
+
+		lld2.addFirst(2.0);
+		lld2.addFirst(1.0);
+		lld2.addLast(3.0);
+		lld2.addLast(4.0);
+
+		double expected = 3.0;
+		double actual = lld2.getRecursive(2);
+
+		Assert.assertEquals(expected, actual, 3.0);
+
+	}
+
+	private static void deepCopyTest() {
+		System.out.println("Deep copy test.");
+		LinkedListDeque<Double> lld2 = new LinkedListDeque<>();
+
+		lld2.addFirst(2.0);
+		lld2.addFirst(1.0);
+		lld2.addLast(3.0);
+		lld2.addLast(4.0);
+
+		LinkedListDeque lld3 = new LinkedListDeque<>(lld2);
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
 		addIsEmptySizeTest();
 		addRemoveTest();
+		getTest();
+		getRecursiveTest();
+		deepCopyTest();
 	}
-} 
+}
