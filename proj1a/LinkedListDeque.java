@@ -34,7 +34,6 @@ public class LinkedListDeque<T> {
      */
     public LinkedListDeque(LinkedListDeque other){
         sentinel = new TNode(null, sentinel, sentinel);
-
         for (int i = 0; i < other.size; i++){
             addLast((T) other.get(i));
         }
@@ -174,7 +173,7 @@ public class LinkedListDeque<T> {
      * @return
      */
     public T get(int index){
-        if (size == 0){
+        if (isEmpty()){
             System.out.println("Size is 0. Noting to return.");
             return null;
         }
