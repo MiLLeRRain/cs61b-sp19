@@ -7,10 +7,9 @@
 
 public class ArrayDeque<T> {
     private int size;
-    private int nextFirst = 7;
-    private int nextLast = 0;
+    private int nextFirst;
+    private int nextLast;
     private T[] items;
-    private double usageRate;
 
     /**
      * Creates an empty linked list deque.
@@ -41,7 +40,7 @@ public class ArrayDeque<T> {
      * resize时需要将nextFirst和nextLast重置，分upsize和downsize两种情况
      */
     public void resizeCheck(){
-        usageRate = (double)size/items.length;
+        double usageRate = (double) size / items.length;
         if (items.length > 16 && usageRate == 0.25) {downsize();}
         else if (usageRate == 1) {upsize();}
     }
@@ -77,7 +76,7 @@ public class ArrayDeque<T> {
             if (indexToAdd == items.length) {
                 indexToAdd = 0;
             }
-            temp[i] = items[indexToAdd];;
+            temp[i] = items[indexToAdd];
             indexToAdd++;
             i++;
         }
@@ -100,7 +99,6 @@ public class ArrayDeque<T> {
 
     /**
      * Adds an item of type T to the front of the deque.
-     * @param item
      */
     public void addFirst(T item) {
         resizeCheck();
@@ -111,7 +109,6 @@ public class ArrayDeque<T> {
 
     /**
      * Adds an item of type T to the back of the deque.
-     * @param item
      */
     public void addLast(T item) {
         resizeCheck();
@@ -123,7 +120,6 @@ public class ArrayDeque<T> {
     /**
      * Removes and returns the item at the front of the deque.
      * If no such item exists, returns null.
-     * @return
      */
     public T removeFirst() {
         if (!isEmpty()) {
@@ -142,7 +138,6 @@ public class ArrayDeque<T> {
     /**
      * Removes and returns the item at the back of the deque.
      * If no such item exists, returns null.
-     * @return
      */
     public T removeLast() {
         if (!isEmpty()) {
@@ -160,16 +155,13 @@ public class ArrayDeque<T> {
 
     /**
      * Returns true if deque is empty, false otherwise.
-     * @return
      */
     public boolean isEmpty() {
-        if (size == 0) return true;
-        return false;
+        return size == 0;
     }
 
     /**
      * Returns the numbers of items in the deque.
-     * @return
      */
     public int size() {
         return size;
@@ -193,8 +185,6 @@ public class ArrayDeque<T> {
      * Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth.
      * If no such item exists, returns null. Must not alter the deque!
      * 需要注意是否为resize之后的index, 此时的0位应该是nextFirst指针+1, 但是需要换位到array[0]
-     * @param index
-     * @return
      */
     public T get(int index) {
         if (isEmpty() || index < 0 || index > size-1) return null;

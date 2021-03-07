@@ -30,7 +30,6 @@ public class LinkedListDeque<T> {
 
     /**
      * Creates a deep copy of 'other'.
-     * @param other
      */
     public LinkedListDeque(LinkedListDeque other){
         sentinel = new TNode(null, sentinel, sentinel);
@@ -41,8 +40,6 @@ public class LinkedListDeque<T> {
 
     /**
      * Same as get, but uses recursion.
-     * @param index
-     * @return
      */
     public T getRecursive(int index){
         if (index < 0 || index > size-1) return null;
@@ -59,7 +56,6 @@ public class LinkedListDeque<T> {
 
     /**
      * Adds an item of type T to the front of the deque.
-     * @param item
      */
     public void addFirst(T item){
         TNode first;
@@ -80,7 +76,6 @@ public class LinkedListDeque<T> {
 
     /**
      * Adds an item of type T to the back of the deque.
-     * @param item
      */
     public void addLast(T item){
         TNode last;
@@ -102,16 +97,13 @@ public class LinkedListDeque<T> {
 
     /**
      * Returns true if deque is empty, false otherwise.
-     * @return
      */
     public boolean isEmpty(){
-        if (size == 0) return true;
-        return false;
+        return size == 0;
     }
 
     /**
      * Returns the numbers of items in the deque.
-     * @return
      */
     public int size(){
         return size;
@@ -137,7 +129,6 @@ public class LinkedListDeque<T> {
     /**
      * Removes and returns the item at the front of the deque.
      * If no such item exists, returns null.
-     * @return
      */
     public T removeFirst(){
         T toReturn = sentinel.next.item;
@@ -153,7 +144,6 @@ public class LinkedListDeque<T> {
     /**
      * Removes and returns the item at the back of the deque.
      * If no such item exists, returns null.
-     * @return
      */
     public T removeLast(){
         T toReturn = sentinel.prev.item;
@@ -169,8 +159,6 @@ public class LinkedListDeque<T> {
     /**
      * Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth.
      * If no such item exists, returns null. Must not alter the deque!
-     * @param index
-     * @return
      */
     public T get(int index){
         if (isEmpty()){
