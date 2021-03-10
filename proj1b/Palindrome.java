@@ -16,11 +16,7 @@ public class Palindrome {
      * Normal Palindrome determination
      */
     public boolean isPalindrome(String word) {
-        Deque<Character> forTest = new LinkedListDeque<>();
-        for (int i = 0; i < word.length(); i++) {
-            forTest.addLast(word.charAt(i));
-        }
-        return isPalindromeHelper(forTest);
+        return isPalindromeHelper(wordToDeque(word));
     }
 
     public boolean isPalindromeHelper(Deque<Character> forTest) {
@@ -33,11 +29,7 @@ public class Palindrome {
      * OffByOne/OffByN Palindrome determination
      */
     public boolean isPalindrome(String word, CharacterComparator cc) {
-        Deque<Character> forTest = new LinkedListDeque<>();
-        for (int i = 0; i < word.length(); i++) {
-            forTest.addLast(word.charAt(i));
-        }
-        return isPalindromeHelperByN(forTest, cc);
+        return isPalindromeHelperByN(wordToDeque(word), cc);
     }
 
     private boolean isPalindromeHelperByN(Deque<Character> forTest, CharacterComparator cc) {
