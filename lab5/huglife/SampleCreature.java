@@ -51,6 +51,8 @@ public class SampleCreature extends Creature {
      */
     private double repEnergyGiven = 0.65;
 
+    private double birthProbability = 0.2;
+
 
     /**
      * Creates a sample creature with energy E. This
@@ -123,6 +125,8 @@ public class SampleCreature extends Creature {
             return new Action(Action.ActionType.MOVE, Direction.LEFT);
         } else if (neighbors.get(Direction.RIGHT).name().equals("empty") && Math.random() < moveProbability) {
             return new Action(Action.ActionType.MOVE, Direction.RIGHT);
+        } else if (neighbors.get(Direction.TOP).name().equals("empty") && Math.random() < birthProbability){
+            return new Action(Action.ActionType.REPLICATE, Direction.TOP);
         } else {
             return new Action(Action.ActionType.STAY);
         }
