@@ -1,6 +1,6 @@
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class UnionFindTest {
 
@@ -16,8 +16,11 @@ public class UnionFindTest {
         test.union(0,6);
         test.find(1);
 
+        assertEquals(8,test.sizeOf(8));
+
         int expectedRoot = 6;
         int actualRoot = test.find(0);
         assertEquals(expectedRoot, actualRoot);
     }
+
 }

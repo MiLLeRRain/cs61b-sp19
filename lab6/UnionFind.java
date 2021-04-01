@@ -1,8 +1,9 @@
 import java.util.*;
 
-public class UnionFind {
+public class UnionFind<T> {
     private int[] parent;
-//    private Map<T, Integer> container = new HashMap<>(); //Should be initialed here???
+    private int rootID;
+//    private Map<T, Integer> weightedQuickUnionDS = new HashMap<>(); //Should be initialed here???
 
     /* Creates a UnionFind data structure holding n vertices. Initially, all
        vertices are in disjoint sets. */
@@ -19,7 +20,7 @@ public class UnionFind {
     /* Returns the size of the set v1 belongs to. */
     public int sizeOf(int v1) {
         validate(v1);
-        return parent(find(v1));
+        return -parent(find(v1));
     }
 
     /* Returns the parent of v1. If v1 is the root of a tree, returns the
@@ -27,7 +28,6 @@ public class UnionFind {
     public int parent(int v1) {
         validate(v1);
         int toReturn = parent[v1];
-        if (toReturn<0) toReturn=-toReturn;
         return toReturn;
     }
 
@@ -74,5 +74,4 @@ public class UnionFind {
         parent[v2] = v1;
         return v1;
     }
-
 }
