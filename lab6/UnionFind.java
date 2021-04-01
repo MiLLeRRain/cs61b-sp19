@@ -2,7 +2,6 @@ import java.util.*;
 
 public class UnionFind<T> {
     private int[] parent;
-    private int rootID;
 //    private Map<T, Integer> weightedQuickUnionDS = new HashMap<>(); //Should be initialed here???
 
     /* Creates a UnionFind data structure holding n vertices. Initially, all
@@ -61,15 +60,15 @@ public class UnionFind<T> {
        allowing for fast search-time. */
     public int find(int v1) {
         validate(v1);
-        while (parent[v1] > 0){
-            v1 = find(parent[v1], v1);
+        while (parent[v1] >= 0){
+            v1 = pathCompress(parent[v1], v1);
         }
         return v1;
     }
 
-    public int find(int v1, int v2) {
-        while (parent[v1] > 0) {
-            v1 = find(parent[v1], v2);
+    public int pathCompress(int v1, int v2) {
+        while (parent[v1] >= 0) {
+            v1 = pathCompress(parent[v1], v2);
         }
         parent[v2] = v1;
         return v1;
