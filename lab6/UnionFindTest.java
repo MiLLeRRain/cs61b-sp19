@@ -14,8 +14,9 @@ public class UnionFindTest {
         test.union(5,6);
         test.union(8,7);
         test.union(6,7);
-        test.union(2,7);
+        test.union(0,7);
         test.find(2);
+        test.find(5);
 
         int expectedRoot = 7;
         int actualRoot = test.find(2);
