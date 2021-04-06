@@ -24,10 +24,9 @@ public class UnionFindTest {
         expectedRoot = 7;
         actualRoot = test.parent(2);
         assertEquals(expectedRoot, actualRoot);
-        assertEquals(7,test.parent(2));
+        assertEquals(7, test.parent(2));
 
         assertEquals(8, test.sizeOf(2));
-
 
     }
 

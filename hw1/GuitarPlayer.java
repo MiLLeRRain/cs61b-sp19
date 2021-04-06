@@ -130,6 +130,7 @@ public class GuitarPlayer {
                     // note on?
                     int note = data[j++] & 0xFF;
                     int vel = data[j++] & 0xFF;
+                    System.out.println(vel);
                     vol[note] = vel / 127.0;
                     strings[note].pluck();
                 } else {
