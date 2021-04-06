@@ -1,7 +1,5 @@
 package es.datastructur.synthesizer;
 
-import java.util.Arrays;
-
 //Note: This file will not compile until you complete task 1 (BoundedQueue).
 public class GuitarString {
     /** Constants. Do not change. In case you're curious, the keyword final
@@ -10,7 +8,7 @@ public class GuitarString {
     private static final double DECAY = .996; // energy decay factor
 
     /* Buffer for storing sound data. */
-    private BoundedQueue<Double> buffer;
+    private final BoundedQueue<Double> buffer;
 
     /* Create a guitar string of the given frequency.  */
     public GuitarString(double frequency) {

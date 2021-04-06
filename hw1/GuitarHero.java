@@ -14,7 +14,7 @@ public class GuitarHero {
             if (StdDraw.hasNextKeyTyped()) {
                 char key = StdDraw.nextKeyTyped();
                 int keyIndex = keyboard.indexOf(key);
-                if (keyIndex >= 0 && keyIndex < 37) {
+                if (keyIndex >= 0) {
                     strings[keyIndex].pluck();
                 }
             }
@@ -36,15 +36,15 @@ public class GuitarHero {
     }
 
     private void tic() {
-        for (int i = 0; i < strings.length; i++) {
-                strings[i].tic();
+        for (GuitarString string : strings) {
+            string.tic();
         }
     }
 
     private double sample() {
         double sum = 0.0f;
-        for (int i = 0; i < strings.length; i++) {
-            sum += strings[i].sample();
+        for (GuitarString string : strings) {
+            sum += string.sample();
         }
         return sum;
     }
