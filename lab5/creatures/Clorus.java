@@ -85,7 +85,7 @@ public class Clorus extends Creature {
         }
 
         //Rule 1
-        if (emptyNeighbors.isEmpty()) {
+        if (emptyNeighbors.isEmpty() && !anyPlip) {
             return new Action(Action.ActionType.STAY);
         }
 

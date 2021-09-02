@@ -10,26 +10,39 @@ public class SimpleOomage implements Oomage {
     protected int blue;
 
     private static final double WIDTH = 0.01;
-    private static final boolean USE_PERFECT_HASH = false;
+    private static final boolean USE_PERFECT_HASH = true;
 
     @Override
     public boolean equals(Object o) {
         // TODO: Write this method.
-        return false;
+        if (o == null) return false;
+        return o instanceof SimpleOomage
+                && this.blue == ((SimpleOomage)o).blue
+                && this.green == ((SimpleOomage)o).green
+                && this.red == ((SimpleOomage)o).red;
     }
 
-    /* Uncomment this method after you've written
-       equals and failed the testHashCodeAndEqualsConsistency
-       test.
+    /*
+     * Uncomment this method after you've written
+     * equals and failed the testHashCodeAndEqualsConsistency
+     * test.
+     */
     @Override
     public int hashCode() {
         if (!USE_PERFECT_HASH) {
             return red + green + blue;
         } else {
             // TODO: Write a perfect hash function for Simple Oomages.
-            return 0;
+            int code = 0;
+            int[] colors = {red / 5, green / 5, blue / 5};
+            int x = 1;
+            for (int i = 0; i < 3; i++) {
+                code += x * colors[i];
+                x = x * 7;
+            }
+            return code;
         }
-    }*/
+    }
 
     public SimpleOomage(int r, int g, int b) {
         if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255) {
@@ -46,7 +59,7 @@ public class SimpleOomage implements Oomage {
     @Override
     public void draw(double x, double y, double scalingFactor) {
         StdDraw.setPenColor(new Color(red, green, blue));
-        StdDraw.filledSquare(x, y, WIDTH * scalingFactor);
+        StdDraw.filledCircle(x, y, WIDTH * scalingFactor);
     }
 
     public static SimpleOomage randomSimpleOomage() {

@@ -59,4 +59,5 @@ public class HugLifeUtils {
 
         return result;
     }
+
 }

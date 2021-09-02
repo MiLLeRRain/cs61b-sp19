@@ -14,7 +14,7 @@ public class HashTableDrawingUtility {
     }
 
     public static double xCoord(int bucketPos) {
-        return bucketPos * 0.05 * scalingFactor + 1.5 * X_OFFSET * scalingFactor;
+        return 0.92 - bucketPos * 0.05 * scalingFactor + 1.5 * X_OFFSET * scalingFactor;
     }
 
     public static double yCoord(int bucketNum, int M) {
